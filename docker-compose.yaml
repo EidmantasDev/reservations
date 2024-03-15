@@ -1,5 +1,5 @@
 services:
-  resrvations:
+  reservations:
     build:
       context: .
       dockerfile: ./apps/reservations/Dockerfile
@@ -55,6 +55,6 @@ services:
     volumes:
       - .:/usr/src/app
     ports:
-      - 3005:3005
+      - '3005:3005'
   mongo:
     image: mongo

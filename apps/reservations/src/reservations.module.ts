@@ -1,5 +1,5 @@
-import * as Joi from 'joi';
 import { Module } from '@nestjs/common';
+import * as Joi from 'joi';
 import { ReservationsService } from './reservations.service';
 import { ReservationsController } from './reservations.controller';
 import {
@@ -17,7 +17,10 @@ import {
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { ClientsModule, Transport } from '@nestjs/microservices';
 import { GraphQLModule } from '@nestjs/graphql';
-import { ApolloFederationDriverConfig } from '@nestjs/apollo';
+import {
+  ApolloFederationDriver,
+  ApolloFederationDriverConfig,
+} from '@nestjs/apollo';
 import { ReservationsResolver } from './reservations.resolver';
 
 @Module({
@@ -27,6 +30,7 @@ import { ReservationsResolver } from './reservations.resolver';
       { name: ReservationDocument.name, schema: ReservationSchema },
     ]),
     GraphQLModule.forRoot<ApolloFederationDriverConfig>({
+      driver: ApolloFederationDriver,
       autoSchemaFile: {
         federation: 2,
       },
